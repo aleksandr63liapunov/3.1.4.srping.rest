@@ -3,8 +3,8 @@ import axios from "axios";
 import {Table,Nav} from "react-bootstrap";
 import {Link, Route, Switch, withRouter} from "react-router-dom";
 import HelloWorld from "./HelloWorld";
-
-
+import UpdateUser from "./UpdateUser";
+import DeleteUser from "./DeleteUser";
 class ListUser extends Component {
     BASE_URL = 'http://localhost:8081/api'
 
@@ -68,10 +68,12 @@ class ListUser extends Component {
                                     </Nav.Link>
                                 </td>
                                 <td>
-                                    <button type="button" className="btn btn-danger" id="delete-user"
-                                            data-action="delete"
-                                            data-id="${user.id}" data-target="modal">Delete
-                                    </button>
+                                    <Nav.Link
+                                        type="button"
+                                        className="btn btn-info"
+                                        href='/delete'>
+                                        Delete
+                                    </Nav.Link>
                                 </td>
 
                             </tr>
@@ -81,10 +83,20 @@ class ListUser extends Component {
 
                     </tbody>
                 </Table>
+                {/*<Switch>*/}
+
+                {/*    <Route  exact path={'/'} />*/}
+                {/*    <Route  path={'/edit'} component={HelloWorld}/>*/}
+                {/*</Switch>*/}
                 <Switch>
 
                     <Route  exact path={'/'} />
-                    <Route  path={'/edit'} component={HelloWorld}/>
+                    <Route  path={'/edit'} component={UpdateUser}/>
+                </Switch>
+                <Switch>
+
+                    <Route  exact path={'/'} />
+                    <Route  path={'/delete'} component={DeleteUser}/>
                 </Switch>
             </React.Fragment>
         );
