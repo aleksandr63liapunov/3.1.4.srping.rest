@@ -6,7 +6,7 @@ import HelloWorld from "./HelloWorld";
 
 
 class ListUser extends Component {
-    BASE_URL = 'http://localhost:8080/api'
+    BASE_URL = 'http://localhost:8081/api'
 
     constructor(props) {
         super(props);
@@ -17,13 +17,18 @@ class ListUser extends Component {
 
     componentDidMount() {
         this.loadData();
-        axios.post("http://localhost:8080/login")
-            .then(json=>console.log(json))
+
     }
 
     loadData() {
-        axios.get(this.BASE_URL + '/users')
-            .then(json => this.setState({listUsers: json.data}, () => console.log(this.state)))
+        axios.get(this.BASE_URL + '/users',
+            {
+                method: 'GET',
+                headers: {
+                    "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwiZXhwIjoxNjQ3ODYyNzEyfQ.lol85ZTQ0hnJCkx41llhhpvvCDvFjuzXagumQwLr7kREs_DznMmimz6c7btjhIpelUg6AkFMCkwyRE3jv634Wg",
+                    "Content-Type": "application/json"
+                }})
+            .then(json => this.setState({listUsers: json.data}))
     }
 
     render() {
